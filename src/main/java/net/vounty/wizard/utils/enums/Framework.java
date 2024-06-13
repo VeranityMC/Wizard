@@ -9,26 +9,26 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public enum Framework {
 
-    UNKNOWN(""),
-    GRADLE("Gradle"),
-    MAVEN("Maven"),
-    SBT("SBT"),
-    LEININGEN("Leiningen"),
-    IVY("Ivy"),
-    BUILDR("BuildR"),
-    GRAPE("Grape"),
+  UNKNOWN(""),
+  GRADLE("Gradle"),
+  MAVEN("Maven"),
+  SBT("SBT"),
+  LEININGEN("Leiningen"),
+  IVY("Ivy"),
+  BUILDR("BuildR"),
+  GRAPE("Grape"),
 
-    ;
+  ;
 
-    private final String name;
+  private final String name;
 
-    public static Framework fetch(String content) {
-        for (final var framework : Arrays.stream(Framework.values()).filter(framework ->
-                !framework.equals(UNKNOWN)).toList()) {
-            if (content.toLowerCase().contains(framework.getName().toLowerCase()))
-                return framework;
-        }
-        return Framework.UNKNOWN;
+  public static Framework fetch(String content) {
+    for (final var framework : Arrays.stream(Framework.values()).filter(framework ->
+      !framework.equals(UNKNOWN)).toList()) {
+      if (content.toLowerCase().contains(framework.getName().toLowerCase()))
+        return framework;
     }
+    return Framework.UNKNOWN;
+  }
 
 }

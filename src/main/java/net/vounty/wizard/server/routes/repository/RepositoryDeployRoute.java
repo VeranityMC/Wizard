@@ -10,46 +10,51 @@ import spark.Spark;
 
 public class RepositoryDeployRoute extends WizardRoute {
 
-    public RepositoryDeployRoute(Wizard wizard) {
-        super(wizard);
+  public RepositoryDeployRoute(Wizard wizard) {
+    super(wizard);
+  }
+
+  @Override
+  public Object handle(Request request, Response response) throws Exception {
+    response.type("application/json");
+    final var repositoryParam = request.params(":repository");
+    if (repositoryParam == null)
+      Spark.halt(400);
+
+    final var optionalRepository = this.getWizard()
+      .getRepositoryAdapter()
+      .getRepository(repositoryParam);
+    if (optionalRepository.isEmpty())
+      Spark.halt(404);
+
+    final var repository = optionalRepository.get();
+    final var authorization = request.headers("Authorization");
+    if (authorization == null)
+      Spark.halt(401);
+
+    final var optionalToken = this.getWizard()
+      .getTokenAdapter()
+      .getTokenFromAuthorization(authorization);
+    if (optionalToken.isEmpty())
+      Spark.halt(401);
+
+    final var token = optionalToken.get();
+    if ((repository.getVisible().equals(Visible.PRIVATE) || repository.getVisible()
+      .equals(Visible.HIDDEN))
+      && !repository.getTokens().contains(token.getUniqueId()))
+      Spark.halt(403);
+
+    final var xRealIp = request.headers("X-Real-IP");
+    if (this.getWizard().getSecureAdapter().existAddress(xRealIp)) {
+      this.getWizard().getLog().secure("Address §b{0}§r tried to deploy but was blocked.");
+      Spark.halt(405);
     }
 
-    @Override
-    public Object handle(Request request, Response response) throws Exception {
-        response.type("application/json");
-        final var repositoryParam = request.params(":repository");
-        if (repositoryParam == null)
-            Spark.halt(400);
+    final var userAgent = request.headers("User-Agent");
+    final var framework = Framework.fetch(userAgent);
 
-        final var optionalRepository = this.getWizard().getRepositoryAdapter().getRepository(repositoryParam);
-        if (optionalRepository.isEmpty())
-            Spark.halt(404);
-
-        final var repository = optionalRepository.get();
-        final var authorization = request.headers("Authorization");
-        if (authorization == null)
-            Spark.halt(401);
-
-        final var optionalToken = this.getWizard().getTokenAdapter().getTokenFromAuthorization(authorization);
-        if (optionalToken.isEmpty())
-            Spark.halt(401);
-
-        final var token = optionalToken.get();
-        if ((repository.getVisible().equals(Visible.PRIVATE) || repository.getVisible().equals(Visible.HIDDEN))
-            && !repository.getTokens().contains(token.getUniqueId()))
-            Spark.halt(403);
-
-        final var xRealIp = request.headers("X-Real-IP");
-        if (this.getWizard().getSecureAdapter().existAddress(xRealIp)) {
-            this.getWizard().getLog().secure("Address §b{0}§r tried to deploy but was blocked.");
-            Spark.halt(405);
-        }
-
-        final var userAgent = request.headers("User-Agent");
-        final var framework = Framework.fetch(userAgent);
-
-        repository.download(request.raw(), token, framework);
-        return null;
-    }
+    repository.download(request.raw(), token, framework);
+    return null;
+  }
 
 }

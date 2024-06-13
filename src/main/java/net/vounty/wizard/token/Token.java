@@ -4,15 +4,20 @@ import java.util.UUID;
 
 public interface Token {
 
-    void toggleStatus();
-    WizardToken.PasswordStatus changePassword(String newPassword);
-    WizardToken.NameStatus changeName(String newName);
+  void toggleStatus();
 
-    Boolean equalPassword(String password);
+  WizardToken.PasswordStatus changePassword(String newPassword);
 
-    UUID getUniqueId();
-    String getUserName();
-    String getPassword();
-    Boolean getActive();
+  WizardToken.NameStatus changeName(String newName);
+
+  Boolean equalPassword(String password);
+
+  UUID getUniqueId();
+
+  String getUserName();
+
+  String getPassword();
+
+  Boolean getActive();
 
 }

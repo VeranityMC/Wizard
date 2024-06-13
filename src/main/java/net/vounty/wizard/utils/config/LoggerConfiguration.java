@@ -9,6 +9,6 @@ import java.util.List;
 @AllArgsConstructor
 public class LoggerConfiguration {
 
-    private final List<String> messages;
+  private final List<String> messages;
 
 }

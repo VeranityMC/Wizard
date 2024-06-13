@@ -11,25 +11,38 @@ import java.lang.reflect.Type;
 
 public interface ConfigurationAdapter extends Adapter {
 
-    void generateConfigurations();
-    void loadConfigurations();
-    void saveConfigurations();
+  void generateConfigurations();
 
-    void saveConfiguration(PathState path, Object document, Boolean override);
-    void saveConfiguration(String path, Object document, Boolean override);
+  void loadConfigurations();
 
-    <Value> Value readConfiguration(String path, Class<Value> type);
-    <Value> Value readConfiguration(PathState path, Class<Value> type);
-    <Value> Value readConfiguration(File file, Class<Value> type);
-    <Value> Value readConfiguration(InputStream inputStream, Class<Value> type);
-    Type readConfiguration(InputStream inputStream, Type type);
-    Type readConfiguration(File file, Type type);
+  void saveConfigurations();
 
-    Gson generateBuilder();
-    WizardConfiguration getWizardConfiguration();
-    TokensConfiguration getTokensConfiguration();
-    RepositoriesConfiguration getRepositoriesConfiguration();
-    WebsiteConfiguration getWebsiteConfiguration();
-    SecureConfiguration getSecureConfiguration();
+  void saveConfiguration(PathState path, Object document, Boolean override);
+
+  void saveConfiguration(String path, Object document, Boolean override);
+
+  <Value> Value readConfiguration(String path, Class<Value> type);
+
+  <Value> Value readConfiguration(PathState path, Class<Value> type);
+
+  <Value> Value readConfiguration(File file, Class<Value> type);
+
+  <Value> Value readConfiguration(InputStream inputStream, Class<Value> type);
+
+  Type readConfiguration(InputStream inputStream, Type type);
+
+  Type readConfiguration(File file, Type type);
+
+  Gson generateBuilder();
+
+  WizardConfiguration getWizardConfiguration();
+
+  TokensConfiguration getTokensConfiguration();
+
+  RepositoriesConfiguration getRepositoriesConfiguration();
+
+  WebsiteConfiguration getWebsiteConfiguration();
+
+  SecureConfiguration getSecureConfiguration();
 
 }

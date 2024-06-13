@@ -11,9 +11,9 @@ import spark.Route;
 @RequiredArgsConstructor
 public abstract class WizardRoute implements Route {
 
-    private final Wizard wizard;
+  private final Wizard wizard;
 
-    @Override
-    public abstract Object handle(Request request, Response response) throws Exception;
+  @Override
+  public abstract Object handle(Request request, Response response) throws Exception;
 
 }

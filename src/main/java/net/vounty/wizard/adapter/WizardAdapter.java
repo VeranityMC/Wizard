@@ -9,10 +9,10 @@ import net.vounty.wizard.service.Wizard;
 @RequiredArgsConstructor
 public class WizardAdapter implements Adapter {
 
-    private final Wizard wizard;
+  private final Wizard wizard;
 
-    public Log getLog() {
-        return this.getWizard().getLog();
-    }
+  public Log getLog() {
+    return this.getWizard().getLog();
+  }
 
 }

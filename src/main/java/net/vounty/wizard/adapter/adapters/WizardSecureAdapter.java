@@ -10,42 +10,43 @@ import java.util.List;
 @Getter
 public class WizardSecureAdapter extends WizardAdapter implements SecureAdapter {
 
-    private final List<String> addresses;
+  private final List<String> addresses;
 
-    public WizardSecureAdapter(Wizard wizard) {
-        super(wizard);
-        this.addresses = new LinkedList<>();
-    }
+  public WizardSecureAdapter(Wizard wizard) {
+    super(wizard);
+    this.addresses = new LinkedList<>();
+  }
 
-    @Override
-    public void loadFromConfiguration() {
-        this.getAddresses().clear();
-        this.getAddresses().addAll(this.getWizard().getConfigurationAdapter().getSecureConfiguration().getAddresses());
-    }
+  @Override
+  public void loadFromConfiguration() {
+    this.getAddresses().clear();
+    this.getAddresses()
+      .addAll(this.getWizard().getConfigurationAdapter().getSecureConfiguration().getAddresses());
+  }
 
-    @Override
-    public Result addAddress(String address) {
-        if (this.existAddress(address))
-            return Result.ALREADY_EXIST;
+  @Override
+  public Result addAddress(String address) {
+    if (this.existAddress(address))
+      return Result.ALREADY_EXIST;
 
-        this.getAddresses().add(address);
-        return Result.SUCCESS;
-    }
+    this.getAddresses().add(address);
+    return Result.SUCCESS;
+  }
 
-    @Override
-    public Result dropAddress(String address) {
-        if (!this.existAddress(address))
-            return Result.NOT_EXIST;
+  @Override
+  public Result dropAddress(String address) {
+    if (!this.existAddress(address))
+      return Result.NOT_EXIST;
 
-        this.getAddresses().remove(address);
-        return Result.SUCCESS;
-    }
+    this.getAddresses().remove(address);
+    return Result.SUCCESS;
+  }
 
-    @Override
-    public Boolean existAddress(String address) {
-        return this.getAddresses().contains(address);
-    }
+  @Override
+  public Boolean existAddress(String address) {
+    return this.getAddresses().contains(address);
+  }
 
-    public enum Result { SUCCESS, NOT_EXIST, ALREADY_EXIST }
+  public enum Result {SUCCESS, NOT_EXIST, ALREADY_EXIST}
 
 }

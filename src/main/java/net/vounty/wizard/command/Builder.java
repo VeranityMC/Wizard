@@ -6,8 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Builder {
 
-    String name();
-    String description();
-    String[] aliases() default {};
+  String name();
+
+  String description();
+
+  String[] aliases() default {};
 
 }

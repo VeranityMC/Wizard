@@ -4,7 +4,8 @@ import java.io.InputStream;
 
 public interface Data {
 
-    String getPath();
-    InputStream getInputStream();
+  String getPath();
+
+  InputStream getInputStream();
 
 }

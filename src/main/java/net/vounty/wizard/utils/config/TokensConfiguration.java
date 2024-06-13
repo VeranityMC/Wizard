@@ -11,10 +11,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TokensConfiguration {
 
-    private final List<WizardToken> tokens;
+  private final List<WizardToken> tokens;
 
-    public static TokensConfiguration getDefault() {
-        return new TokensConfiguration(new LinkedList<>());
-    }
+  public static TokensConfiguration getDefault() {
+    return new TokensConfiguration(new LinkedList<>());
+  }
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DependencyConfiguration {
 
-    private final RepositoryDependency dependency;
-    private final List<RepositoryDependency> subDependencies;
+  private final RepositoryDependency dependency;
+  private final List<RepositoryDependency> subDependencies;
 
 }

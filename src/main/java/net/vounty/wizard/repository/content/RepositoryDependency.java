@@ -7,6 +7,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(staticName = "of")
 public class RepositoryDependency implements Dependency {
 
-    private final String groupId, artifactId, version;
+  private final String groupId, artifactId, version;
 
 }

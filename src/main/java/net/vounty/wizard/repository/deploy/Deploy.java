@@ -5,7 +5,8 @@ import java.util.List;
 
 public interface Deploy {
 
-    File getFolder();
-    List<Data> getDataList();
+  File getFolder();
+
+  List<Data> getDataList();
 
 }

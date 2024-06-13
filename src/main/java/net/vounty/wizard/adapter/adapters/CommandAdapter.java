@@ -8,10 +8,12 @@ import java.util.Optional;
 
 public interface CommandAdapter extends Adapter {
 
-    void register(Command command);
-    void unregister(Command command);
+  void register(Command command);
 
-    Optional<Command> getCommand(String value);
-    List<Command> getCommands();
+  void unregister(Command command);
+
+  Optional<Command> getCommand(String value);
+
+  List<Command> getCommands();
 
 }

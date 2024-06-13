@@ -3,27 +3,33 @@ package net.vounty.wizard.service;
 import net.vounty.wizard.adapter.adapters.*;
 import net.vounty.wizard.console.Console;
 import net.vounty.wizard.log.Log;
-import net.vounty.wizard.utils.OptionSet;
 
 public interface Wizard {
 
-    void initialize(OptionSet optionSet);
-    void reload();
-    void terminate();
+  static Wizard getService() {
+    return WizardService.getWizardService();
+  }
 
-    Boolean isIPv4(String address);
+  void initialize();
 
-    Log getLog();
-    Console getConsole();
+  void reload();
 
-    CommandAdapter getCommandAdapter();
-    ConfigurationAdapter getConfigurationAdapter();
-    TokenAdapter getTokenAdapter();
-    RepositoryAdapter getRepositoryAdapter();
-    SecureAdapter getSecureAdapter();
+  void terminate();
 
-    static Wizard getService() {
-        return WizardService.getWizardService();
-    }
+  Boolean isIPv4(String address);
+
+  Log getLog();
+
+  Console getConsole();
+
+  CommandAdapter getCommandAdapter();
+
+  ConfigurationAdapter getConfigurationAdapter();
+
+  TokenAdapter getTokenAdapter();
+
+  RepositoryAdapter getRepositoryAdapter();
+
+  SecureAdapter getSecureAdapter();
 
 }

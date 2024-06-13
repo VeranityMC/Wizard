@@ -6,9 +6,10 @@ import java.util.function.Consumer;
 
 public interface Server {
 
-    void start(Consumer<String> host);
-    void stop();
+  void start(Consumer<String> host);
 
-    Wizard getWizard();
+  void stop();
+
+  Wizard getWizard();
 
 }

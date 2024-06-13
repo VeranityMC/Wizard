@@ -7,16 +7,20 @@ import java.util.List;
 
 public interface Command {
 
-    Boolean execute(List<String> arguments);
-    void displayUsage();
+  Boolean execute(List<String> arguments);
 
-    Command apply(Wizard wizard);
+  void displayUsage();
 
-    String getName();
-    String getDescription();
-    List<String> getAliases();
+  Command apply(Wizard wizard);
 
-    Log getLog();
-    Wizard getWizard();
+  String getName();
+
+  String getDescription();
+
+  List<String> getAliases();
+
+  Log getLog();
+
+  Wizard getWizard();
 
 }

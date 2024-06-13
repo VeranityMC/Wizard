@@ -13,43 +13,47 @@ import java.util.List;
 
 public class RepositoryContentRoute extends WizardRoute {
 
-    public RepositoryContentRoute(Wizard wizard) {
-        super(wizard);
-    }
+  public RepositoryContentRoute(Wizard wizard) {
+    super(wizard);
+  }
 
-    @Override
-    public Object handle(Request request, Response response) throws Exception {
-        response.type("application/json");
-        final var repositoryName = request.params(":repository");
-        if (repositoryName == null)
-            Spark.halt(400);
+  @Override
+  public Object handle(Request request, Response response) throws Exception {
+    response.type("application/json");
+    final var repositoryName = request.params(":repository");
+    if (repositoryName == null)
+      Spark.halt(400);
 
-        final var optionalRepository = this.getWizard().getRepositoryAdapter().getRepository(repositoryName);
-        if (optionalRepository.isEmpty())
-            Spark.halt(404);
+    final var optionalRepository = this.getWizard()
+      .getRepositoryAdapter()
+      .getRepository(repositoryName);
+    if (optionalRepository.isEmpty())
+      Spark.halt(404);
 
-        final var repository = optionalRepository.get();
-        final var pathInfo = request.pathInfo()
-                .replace("/s/" + repositoryName + "/", "")
-                .replace("/", "//");
-        if (repository.getVisible().equals(Visible.PUBLIC))
-            return repository.getRouteResult(pathInfo);
+    final var repository = optionalRepository.get();
+    final var pathInfo = request.pathInfo()
+      .replace("/s/" + repositoryName + "/", "")
+      .replace("/", "//");
+    if (repository.getVisible().equals(Visible.PUBLIC))
+      return repository.getRouteResult(pathInfo);
 
-        final var authorization = request.headers("Authorization");
-        if (authorization == null)
-            Spark.halt(401);
+    final var authorization = request.headers("Authorization");
+    if (authorization == null)
+      Spark.halt(401);
 
-        final var optionalToken = this.getWizard().getTokenAdapter().getTokenFromAuthorization(authorization);
-        if (optionalToken.isEmpty())
-            Spark.halt(401);
+    final var optionalToken = this.getWizard()
+      .getTokenAdapter()
+      .getTokenFromAuthorization(authorization);
+    if (optionalToken.isEmpty())
+      Spark.halt(401);
 
-        final var token = optionalToken.get();
-        if (!repository.getTokens().contains(token.getUniqueId()))
-            Spark.halt(403);
+    final var token = optionalToken.get();
+    if (!repository.getTokens().contains(token.getUniqueId()))
+      Spark.halt(403);
 
-        return repository.getRouteResult(pathInfo);
-    }
+    return repository.getRouteResult(pathInfo);
+  }
 
-    public record Result(DependencyConfiguration dependency, List<Content> contents) {}
+  public record Result(DependencyConfiguration dependency, List<Content> contents) {}
 
 }

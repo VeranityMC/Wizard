@@ -10,10 +10,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecureConfiguration {
 
-    private final List<String> addresses;
+  private final List<String> addresses;
 
-    public static SecureConfiguration getDefault() {
-        return new SecureConfiguration(new LinkedList<>());
-    }
+  public static SecureConfiguration getDefault() {
+    return new SecureConfiguration(new LinkedList<>());
+  }
 
 }

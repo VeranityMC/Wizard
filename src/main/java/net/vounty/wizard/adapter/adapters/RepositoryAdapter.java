@@ -9,13 +9,16 @@ import java.util.UUID;
 
 public interface RepositoryAdapter extends Adapter {
 
-    void loadFromConfiguration();
+  void loadFromConfiguration();
 
-    Boolean registerRepository(Repository repository);
-    Boolean unregisterRepository(Repository repository);
+  Boolean registerRepository(Repository repository);
 
-    Optional<Repository> getRepository(String name);
-    Optional<Repository> getRepository(UUID uniqueId);
-    List<Repository> getRepositories();
+  Boolean unregisterRepository(Repository repository);
+
+  Optional<Repository> getRepository(String name);
+
+  Optional<Repository> getRepository(UUID uniqueId);
+
+  List<Repository> getRepositories();
 
 }

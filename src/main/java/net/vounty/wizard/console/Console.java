@@ -5,14 +5,18 @@ import org.jline.terminal.Terminal;
 
 public interface Console {
 
-    void initialize();
-    void terminate();
-    void execute();
-    void clearConsole();
+  void initialize();
 
-    String readLine();
+  void terminate();
 
-    Terminal getTerminal();
-    LineReader getLineReader();
+  void execute();
+
+  void clearConsole();
+
+  String readLine();
+
+  Terminal getTerminal();
+
+  LineReader getLineReader();
 
 }

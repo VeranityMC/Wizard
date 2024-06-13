@@ -10,7 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RepositoryDeploy implements Deploy {
 
-    private final File folder;
-    private final List<Data> dataList;
+  private final File folder;
+  private final List<Data> dataList;
 
 }

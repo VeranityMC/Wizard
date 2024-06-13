@@ -11,23 +11,34 @@ import java.util.UUID;
 
 public interface Repository {
 
-    Repository updateMissingFields();
-    void download(HttpServletRequest request, Token token, Framework framework) throws Exception;
-    String viewFile(String path);
+  Repository updateMissingFields();
 
-    WizardRepository.NameStatus changeName(String newName);
-    WizardRepository.TokenStatus pushToken(UUID uniqueId);
-    WizardRepository.TokenStatus dropToken(UUID uniqueId);
-    void toggleVisible();
-    void toggleMultipleDeployments();
+  void download(HttpServletRequest request, Token token, Framework framework) throws Exception;
 
-    RepositoryContentRoute.Result getRouteResult(String path);
+  String viewFile(String path);
 
-    UUID getUniqueId();
-    String getName();
-    Visible getVisible();
-    Boolean getMultipleDeployments();
-    List<UUID> getTokens();
-    String getFolder();
+  WizardRepository.NameStatus changeName(String newName);
+
+  WizardRepository.TokenStatus pushToken(UUID uniqueId);
+
+  WizardRepository.TokenStatus dropToken(UUID uniqueId);
+
+  void toggleVisible();
+
+  void toggleMultipleDeployments();
+
+  RepositoryContentRoute.Result getRouteResult(String path);
+
+  UUID getUniqueId();
+
+  String getName();
+
+  Visible getVisible();
+
+  Boolean getMultipleDeployments();
+
+  List<UUID> getTokens();
+
+  String getFolder();
 
 }

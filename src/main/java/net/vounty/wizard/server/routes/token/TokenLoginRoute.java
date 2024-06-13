@@ -11,27 +11,29 @@ import spark.Spark;
 
 public class TokenLoginRoute extends WizardRoute {
 
-    public TokenLoginRoute(Wizard wizard) {
-        super(wizard);
-    }
+  public TokenLoginRoute(Wizard wizard) {
+    super(wizard);
+  }
 
-    @Override
-    public Object handle(Request request, Response response) throws Exception {
-        final var tokenBody = new Gson().fromJson(request.body(), TokenBody.class);
-        if (tokenBody == null)
-            Spark.halt(500);
+  @Override
+  public Object handle(Request request, Response response) throws Exception {
+    final var tokenBody = new Gson().fromJson(request.body(), TokenBody.class);
+    if (tokenBody == null)
+      Spark.halt(500);
 
-        final var optionalToken = this.getWizard().getTokenAdapter().getToken(tokenBody.getUser(), tokenBody.getPassword());
-        Spark.halt(optionalToken.isPresent() ? 204 : 401);
-        return null;
-    }
+    final var optionalToken = this.getWizard()
+      .getTokenAdapter()
+      .getToken(tokenBody.getUser(), tokenBody.getPassword());
+    Spark.halt(optionalToken.isPresent() ? 204 : 401);
+    return null;
+  }
 
-    @Getter
-    @AllArgsConstructor
-    public static class TokenBody {
+  @Getter
+  @AllArgsConstructor
+  public static class TokenBody {
 
-        private final String user, password;
+    private final String user, password;
 
-    }
+  }
 
 }

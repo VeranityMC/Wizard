@@ -7,18 +7,18 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum LogState {
 
-    INFO("§1"),
-    WARN("§6"),
-    USAGE("§b"),
-    ERROR("§4"),
-    DEBUG("§d"),
-    TRACE("§5"),
-    SECURE("§2");
+  INFO("§1"),
+  WARN("§6"),
+  USAGE("§b"),
+  ERROR("§4"),
+  DEBUG("§d"),
+  TRACE("§5"),
+  SECURE("§2");
 
-    private final String color;
+  private final String color;
 
-    public String format() {
-        return this.getColor() + this.name();
-    }
+  public String format() {
+    return this.getColor() + this.name();
+  }
 
 }

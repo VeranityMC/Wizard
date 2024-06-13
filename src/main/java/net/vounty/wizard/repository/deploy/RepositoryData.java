@@ -9,7 +9,7 @@ import java.io.InputStream;
 @RequiredArgsConstructor
 public class RepositoryData implements Data {
 
-    private final String path;
-    private final InputStream inputStream;
+  private final String path;
+  private final InputStream inputStream;
 
 }

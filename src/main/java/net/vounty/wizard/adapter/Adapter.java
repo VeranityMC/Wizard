@@ -5,7 +5,8 @@ import net.vounty.wizard.service.Wizard;
 
 public interface Adapter {
 
-    Log getLog();
-    Wizard getWizard();
+  Log getLog();
+
+  Wizard getWizard();
 
 }

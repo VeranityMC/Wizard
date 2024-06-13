@@ -7,14 +7,14 @@ import spark.Response;
 
 public class ConfigGetRoute extends WizardRoute {
 
-    public ConfigGetRoute(Wizard wizard) {
-        super(wizard);
-    }
+  public ConfigGetRoute(Wizard wizard) {
+    super(wizard);
+  }
 
-    @Override
-    public Object handle(Request request, Response response) throws Exception {
-        response.type("application/json");
-        return this.getWizard().getConfigurationAdapter().getWebsiteConfiguration();
-    }
+  @Override
+  public Object handle(Request request, Response response) throws Exception {
+    response.type("application/json");
+    return this.getWizard().getConfigurationAdapter().getWebsiteConfiguration();
+  }
 
 }
